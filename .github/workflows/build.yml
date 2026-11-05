@@ -30,12 +30,10 @@ jobs:
         run: |
           pip install pillow
           python make_icons.py
-          
-      - name: Fix Capacitor plugin call
-        run: |
-          sed -i 's#Capacitor.registerPlugin("UsageMonitor")#(Capacitor.Plugins.UsageMonitor || null)#' www/index.html
-          grep -n "Plugins.UsageMonitor" www/index.html
-          
+
+      - name: Patch app for notifications
+        run: python patch_app.py
+
       - name: Sync web files
         run: npx cap sync android
 
