@@ -34,6 +34,9 @@ jobs:
       - name: Patch app for notifications
         run: python patch_app.py
 
+      - name: Native usage monitor
+        run: python setup_native.py
+
       - name: Sync web files
         run: npx cap sync android
 
