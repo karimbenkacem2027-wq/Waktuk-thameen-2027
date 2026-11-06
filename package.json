@@ -1,7 +1,13 @@
 {
-  "name": "waqtak-app",
-  "version": "1.0.0",
+  "name": "waqtak-thamin",
+  "version": "2.0.0",
   "private": true,
+  "description": "وقتك ثمين | Your Time Is Precious",
+  "scripts": {
+    "android:init": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:debug": "cd android && ./gradlew assembleDebug"
+  },
   "dependencies": {
     "@capacitor/android": "^6.2.0",
     "@capacitor/core": "^6.2.0",
