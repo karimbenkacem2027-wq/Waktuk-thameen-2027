@@ -592,7 +592,6 @@ x = MANIFEST.read_text(encoding="utf-8")
 if "AlarmReceiver" not in x:
     perms = [
         "android.permission.PACKAGE_USAGE_STATS",
-        "android.permission.QUERY_ALL_PACKAGES",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.POST_NOTIFICATIONS",
         "android.permission.VIBRATE",
