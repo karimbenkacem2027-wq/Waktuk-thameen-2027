@@ -5,18 +5,14 @@
 <title>وقتك ثمين | Your Time Is Precious</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B6B52">
+<meta name="color-scheme" content="light dark">
+<meta name="application-name" content="وقتك ثمين V2">
 <meta name="description" content="تطبيق إسلامي لتوجيه وقتك وحمايته من الضياع، مع التذكير بالذكر والقرآن والتنمية الذاتية.">
 <!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <!-- Dynamic PWA Manifest Generator -->
-<link id="manifest-placeholder" rel="manifest">
-<script>
-/* DEBUG: يعرض أي خطأ جافاسكربت على الشاشة */
-(function(){function show(m){var d=document.getElementById("dbgerr");if(!d){d=document.createElement("pre");d.id="dbgerr";d.style.cssText="position:fixed;z-index:99999;top:40px;left:8px;right:8px;max-height:60vh;overflow:auto;background:#fff;color:#b00020;border:2px solid #b00020;padding:8px;font:12px/1.4 monospace;white-space:pre-wrap;direction:ltr;text-align:left";(document.body||document.documentElement).appendChild(d)}d.textContent+=m+"\n"}
-window.addEventListener("error",function(e){show("ERR: "+e.message+" @"+(e.lineno||"")+":"+(e.colno||""))});
-window.addEventListener("unhandledrejection",function(e){show("PROMISE: "+(e.reason&&e.reason.message||e.reason))});
-setTimeout(function(){var a=document.getElementById("app");if(!a||!a.innerHTML.trim())show("APP EMPTY: لم يُرسم المحتوى")},2500)})();
-</script>
+<link rel="manifest" href="./manifest.webmanifest">
+
 <style>
 :root {
   box-sizing: border-box;
@@ -104,7 +100,7 @@ main {
   text-align: center;
 }
 
-/* Header & Flag */
+/* Brand header */
 .header-wrapper {
   display: flex;
   flex-direction: column;
@@ -306,6 +302,42 @@ nav button.on { opacity: 1; color: var(--gold); font-weight: 700; }
 }
 a { color: var(--gold); font-weight: 700; }
 @media (prefers-reduced-motion: reduce) { * { transition: none!important } }
+
+/* ===== V2 premium visual system ===== */
+:root { --radius-xl: 24px; --shadow-card: 0 14px 34px rgba(3,24,20,.09); }
+body { background: radial-gradient(ellipse at 12% 0%, rgba(212,175,55,.13), transparent 35%), linear-gradient(155deg,var(--bg1),var(--bg2)); }
+main { max-width: 560px; padding: 18px 16px 28px; gap: 16px; }
+.header-wrapper { padding: 12px 0 4px; gap: 4px; }
+.brand-mark { width:58px;height:58px;border-radius:20px;display:grid;place-items:center;position:relative;background:linear-gradient(145deg,#0b6b52,#073b30);border:1px solid rgba(212,175,55,.65);box-shadow:0 10px 24px rgba(4,55,42,.22);margin-bottom:6px; }
+.brand-mark span { font:700 36px/1 Amiri,serif;color:#f5d879; }
+.brand-mark i { position:absolute; width:7px;height:7px;border-radius:50%;background:#f5d879;top:10px;right:11px;box-shadow:0 0 12px #f5d879; }
+h1 { font-size:42px; letter-spacing:-.4px; text-shadow:0 4px 18px rgba(168,132,26,.12); }
+.sub { font-size:11px;letter-spacing:.13em;text-transform:uppercase; }
+.card { border-radius:var(--radius-xl); padding:18px; box-shadow:var(--shadow-card); backdrop-filter:blur(12px); gap:12px; }
+.card h2 { width:100%; text-align:center; }
+.verse { font-size:27px; line-height:2; }
+.btn { min-height:46px; border-radius:15px; box-shadow:0 5px 14px rgba(7,75,57,.12); }
+.btn.o { box-shadow:none; }
+.chip { padding:8px 14px; }
+.act { border-radius:16px; padding:13px; transition:transform .16s,border-color .16s,background .16s; }
+.act:active { transform:scale(.985); }
+nav { padding:7px 3px calc(7px + env(safe-area-inset-bottom,0px)); background:color-mix(in srgb,var(--card) 92%,transparent); backdrop-filter:blur(18px); box-shadow:0 -8px 28px rgba(0,0,0,.06); }
+nav button { flex:1; min-width:0; font-size:10px; padding:5px 1px; gap:1px; }
+nav button svg { width:19px;height:19px; }
+.stats { width:100%; }
+.quran-toolbar { display:grid;grid-template-columns:1fr auto;gap:8px;width:100%; }
+.quran-toolbar select { min-width:0;width:100%;padding:11px;border-radius:13px; }
+.ayah { width:100%;padding:14px 12px;border:1px solid var(--ln);border-radius:16px;background:var(--soft);text-align:center; }
+.ayah-text { font:24px/2 Amiri,serif; }
+.ayah-meta { display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;font-size:11px;opacity:.75; }
+.ayah-play { border:1px solid var(--ln);background:var(--card);color:var(--gold);border-radius:99px;padding:6px 10px;font-size:12px; }
+.adhkar-item { width:100%;text-align:start;padding:14px;border:1px solid var(--ln);border-radius:16px;background:var(--soft); }
+.adhkar-text { font:22px/1.9 Amiri,serif;text-align:center; }
+.adhkar-foot { display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;font-size:12px; }
+.count-pill { border:1px solid var(--gold);border-radius:99px;padding:5px 12px;color:var(--gold);font-weight:800;background:var(--badge-bg); }
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible { outline:3px solid var(--gold);outline-offset:3px; }
+@media(max-width:380px){ nav button{font-size:9px} nav button svg{width:17px;height:17px} .ayah-text{font-size:21px} }
+
 </style>
 </head>
 <body>
@@ -314,33 +346,11 @@ a { color: var(--gold); font-weight: 700; }
 <nav id="nav"></nav>
 
 <script>
-/* ---------- DYNAMIC PWA SERVICE WORKER & MANIFEST ---------- */
-const manifestData = {
-  name: "وقتك ثمين | Your Time Is Precious",
-  short_name: "وقتك ثمين",
-  start_url: "./",
-  display: "standalone",
-  background_color: "#FAF3E0",
-  theme_color: "#0B6B52",
-  icons: [
-    { src: "https://placehold.co/192x192/0B6B52/FAF3E0?text=وقتك+ثمين", sizes: "192x192", type: "image/png" },
-    { src: "https://placehold.co/512x512/0B6B52/FAF3E0?text=وقتك+ثمين", sizes: "512x512", type: "image/png" }
-  ]
-};
-const manifestBlob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
-document.getElementById('manifest-placeholder').setAttribute('href', URL.createObjectURL(manifestBlob));
-
+/* ---------- PWA: stable manifest + installable service worker ---------- */
 let swRegistration = null;
-if ('serviceWorker' in navigator) {
-  const swCode = `
-    const CACHE_NAME = 'yt-pwa-v3';
-    self.addEventListener('install', e => e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['./']))));
-    self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));
-  `;
-  const swBlob = new Blob([swCode], { type: 'text/javascript' });
-  navigator.serviceWorker.register(URL.createObjectURL(swBlob)).then(reg => {
-    swRegistration = reg;
-  }).catch(()=>{});
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('./sw.js').then(reg => { swRegistration = reg; })
+    .catch(err => console.info('Service worker unavailable in this environment:', err));
 }
 
 /* ---------- SVG ICONS DEFINITIONS ---------- */
@@ -349,6 +359,7 @@ const ICONS = {
   istighfar: `<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-13h-2v6l5.2 3.1.8-1.3-4-2.4z"/></svg>`,
   stats: `<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>`,
   invest: `<svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm5 12.82l-5 2.73-5-2.73v-3.96l5 2.73 5-2.73v3.96zM12 13L4.2 8.76 12 4.53l7.8 4.23L12 13z"/></svg>`,
+  adhkar: `<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v5.2l3.2 1.9-.9 1.5-4.3-2.6V7z"/></svg>`,
   settings: `<svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>`,
   quran: `<svg class="act-icon" viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.35-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>`,
   memorize: `<svg class="act-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.68-1.15C9.42 20.53 10.67 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-1.25 0-2.43-.37-3.41-1.02l-.24-.16-2.22.69.7-2.16-.17-.26A6.974 6.974 0 0 1 5 12c0-3.86 3.14-7 7-7s7 3.14 7 7-3.14 7-7 7z"/></svg>`,
@@ -577,10 +588,7 @@ const sel = (k, l, opts) => `<div class="set"><span>${l}</span><select data-in="
 function head() {
   return `
   <div class="header-wrapper">
-    <div class="algeria-flag-container">
-      ${DZ_FLAG}
-      <span style="font-size:11px;font-weight:700;">الجزائر | Algeria</span>
-    </div>
+    <div class="brand-mark" aria-hidden="true"><span>و</span><i></i></div>
     <h1>وقتك ثمين</h1>
     <p class="sub">Your Time Is Precious</p>
   </div>`;
@@ -617,7 +625,8 @@ function home() {
     + `<button class="btn" data-tab="istighfar">${t("مؤقت الاستغفار التنازلي","Countdown Istighfar Counter")}</button>
        <button class="btn o" data-tab="stats">${t("الإحصاءات والأوسمة","Statistics & Badges")}</button>
        <button class="btn o" data-tab="settings">${t("تخصيص التذكيرات والإشعارات","Customize Reminders & Alerts")}</button>
-       <a class="btn s" style="text-decoration:none;display:block;font-weight:700" href="https://quran.com" target="_blank" rel="noopener">${t("افتح المصحف الشريف","Open Quran")}</a>
+       <button class="btn s" data-tab="quran">${t("افتح المصحف الشريف","Open Quran")}</button>
+       <button class="btn s" data-tab="adhkar">${t("أذكار الصباح والمساء","Morning & Evening Adhkar")}</button>
        <button class="btn s" data-tab="invest">${t("استثمر وقتك في عمل نافع","Invest your time in good deeds")}</button>`;
 }
 
@@ -687,6 +696,64 @@ setInterval(() => {
   }
 }, 500);
 
+const SURAH_NAMES = [
+"الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"
+];
+let _quranBusy = false, _quranLoaded = 0;
+function quranView() {
+  const selected = Math.min(114, Math.max(1, +(S.qSurah || 1)));
+  return `<h2>${t("المصحف الشريف","The Noble Quran")}</h2>`
+    + card(`<div class="dim">${t("قراءة نص المصحف بالرسم العثماني مع تلاوة الشيخ مشاري العفاسي. يلزم الاتصال بالإنترنت لجلب النص والصوت.","Uthmani Quran text with Mishary Alafasy recitation. Internet is required to load text and audio.")}</div>
+      <div class="quran-toolbar"><select id="qSurahSelect" aria-label="${t("اختر السورة","Choose surah")}">${SURAH_NAMES.map((n,i)=>`<option value="${i+1}" ${selected===i+1?"selected":""}>${AR()?n:(i+1)+". "+n}</option>`).join("")}</select><button class="btn sm" data-x="loadQuran">${t("عرض","Open")}</button></div>
+      <div id="quranStatus" class="dim" aria-live="polite">${t("اختر سورة لبدء القراءة.","Choose a surah to begin reading.")}</div>
+      <div id="quranContent" style="width:100%;display:grid;gap:9px"></div>
+      <audio id="quranAudio" controls preload="none" style="width:100%;display:none"></audio>
+      <div class="dim">${t("مصدر النص والصوت: AlQuran Cloud API. راجع المصحف المعتمد عند المراجعة والحفظ.","Text and audio provider: AlQuran Cloud API. Consult a verified mushaf when memorizing or checking recitation.")}</div>`);
+}
+async function loadSurah(n) {
+  n = Math.min(114, Math.max(1, Number(n)||1));
+  const status = document.getElementById('quranStatus'), box = document.getElementById('quranContent');
+  if (!status || !box || _quranBusy) return;
+  _quranBusy = true; S.qSurah = n; save();
+  status.textContent = t('جارٍ تحميل السورة...','Loading surah...'); box.innerHTML = '';
+  try {
+    const [tx, au] = await Promise.all([
+      fetch(`https://api.alquran.cloud/v1/surah/${n}/quran-uthmani`).then(r=>{if(!r.ok)throw Error('text');return r.json()}),
+      fetch(`https://api.alquran.cloud/v1/surah/${n}/ar.alafasy`).then(r=>{if(!r.ok)throw Error('audio');return r.json()})
+    ]);
+    if (tx.code !== 200 || au.code !== 200) throw Error('api');
+    const ayahs = tx.data.ayahs || [], audios = au.data.ayahs || [];
+    box.innerHTML = ayahs.map((a,i)=>`<article class="ayah"><div class="ayah-text">${escapeHtml(a.text)}</div><div class="ayah-meta"><span>${t('الآية','Ayah')} ${a.numberInSurah}</span><button class="ayah-play" data-playayah="${escapeAttr(audios[i]?.audio||'')}">▶ ${t('استمع','Listen')}</button></div></article>`).join('');
+    status.textContent = `${tx.data.name} • ${tx.data.numberOfAyahs} ${t('آية','ayahs')}`;
+    _quranLoaded = n;
+  } catch (err) {
+    status.textContent = t('تعذر تحميل السورة. تحقق من اتصال الإنترنت ثم أعد المحاولة.','Could not load this surah. Check your internet connection and try again.');
+  } finally { _quranBusy = false; }
+}
+function escapeHtml(s) { return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeAttr(s) { return escapeHtml(s); }
+
+const ADHKAR = {
+ morning: [
+  ["أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ...", "مرة واحدة", "صحيح مسلم"],
+  ["اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ", "مرة واحدة", "أبو داود والترمذي"],
+  ["بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ", "ثلاث مرات", "أبو داود والترمذي"],
+  ["قُلْ هُوَ اللَّهُ أَحَدٌ، وقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، وقُلْ أَعُوذُ بِرَبِّ النَّاسِ", "ثلاث مرات لكل سورة", "أبو داود والترمذي"]
+ ],
+ evening: [
+  ["أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ...", "مرة واحدة", "صحيح مسلم"],
+  ["اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ", "مرة واحدة", "أبو داود والترمذي"],
+  ["بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ", "ثلاث مرات", "أبو داود والترمذي"],
+  ["قُلْ هُوَ اللَّهُ أَحَدٌ، وقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، وقُلْ أَعُوذُ بِرَبِّ النَّاسِ", "ثلاث مرات لكل سورة", "أبو داود والترمذي"]
+ ]
+};
+function adhkarView() {
+ const period = S.adhkarPeriod || 'morning', list = ADHKAR[period];
+ return `<h2>${t('الأذكار اليومية','Daily Adhkar')}</h2>` + card(`<div class="row">${chips('adhkarPeriod', [['morning',t('أذكار الصباح','Morning')],['evening',t('أذكار المساء','Evening')]],period)}</div>
+ ${list.map((a,i)=>{const key=period+'_'+i, count=(U.adhkarCounts||{})[key]||0;return `<div class="adhkar-item"><div class="adhkar-text">${a[0]}</div><div class="adhkar-foot"><span>${t(a[1],a[1])} • ${a[2]}</span><button class="count-pill" data-adhkar="${key}">${count} / ${i===2||i===3?3:1} ${t('تسبيح','done')}</button></div></div>`}).join('')}
+ <div class="dim">${t('تنبيه: بعض الأذكار عُرضت مختصرة بعلامة الحذف. افتح المصدر للتحقق من اللفظ الكامل، ولا تعتمد على النص المختصر للحفظ.','Some adhkar are intentionally abbreviated with an ellipsis. Consult the cited source for the complete wording before memorizing.')}</div>`);
+}
+
 function stats() {
   const d = day(), days = [];
   for (let i = 6; i >= 0; i--) {
@@ -729,7 +796,7 @@ function stats() {
       </div>
       ${avg !== null ? `<div style="font-size:13px;margin-top:6px">${d.sec <= avg ? t("اليوم أقل من معدّل أيامك بـ " + fm((avg - d.sec) / 60) + " — أحسنت 🌿", "Today is " + fm((avg - d.sec) / 60) + " below average — Great! 🌿") : t("يمكنك تقليل الاستخدام وتخصيص وقت للراحة والعلم 🌿", "Consider reducing screen time for rest & learning 🌿")}</div>` : ""}
     `)
-    + card(`<div class="dim">${t("ملاحظة: النسخة الشبكية تقيس الوقت الذي تقضيه داخل هذا التطبيق فقط. لاستخدام أعمق، أضف الصفحة لشاشتك الرئيسية.","Note: Web version tracks time spent inside this app page.")}</div>`);
+    + card(`<div class="dim">${t("دقة الإحصاءات: في أندرويد تعتمد متابعة بقية التطبيقات على منح إذن الوصول إلى بيانات الاستخدام. في المتصفح تُحسب مدة بقاء هذه الصفحة مفتوحة فقط.","Tracking note: Android can monitor other apps only after Usage Access is granted. In a browser, only time spent on this page is measured.")}</div>`);
 }
 
 function invest() {
@@ -805,12 +872,8 @@ function about() {
       </div>
       <h2>${t("تطوير وإعداد","Developer")}</h2>
       <div style="font-size:17px;font-weight:700;color:var(--gold)">كريم بن قاسم | Karim Benkacem</div>
-      <div style="display:flex;align-items:center;gap:6px;margin-top:4px">
-        ${DZ_FLAG}
-        <span>الجزائر | Algeria</span>
-      </div>
       <h2>${t("التواصل عبر واتساب","WhatsApp Contact")}</h2>
-      <a href="https://wa.me/213778388878" target="_blank" rel="noopener" dir="ltr" style="font-size:18px">+213 778 38 88 78</a>
+      <a href="https://wa.me/213778388778" target="_blank" rel="noopener" dir="ltr" style="font-size:18px">+213 778 38 87 78</a>
     `) + `<button class="btn" data-x="closeabout">${t("رجوع للتطبيق","Back to App")}</button></main></div>`;
 }
 
@@ -820,7 +883,7 @@ function onboard() {
     ` + card(`
       <h2>${t("الوقت أمانة ونعمة","Time is a Blessing")}</h2>
       <div style="font-size:14px">${t("يقدم لك التطبيق تذكيرات لطيفة تحافظ على وقتك وتشجعك على تلاوة القرآن وتعلّم النافع وتنظيم يومك.","This app provides gentle reminders to protect your time and guide you towards Quran, knowledge and meaningful habits.")}</div>
-      <div class="dim">${t("بياناتك محفوضة في جهازك، والتطبيق مجاني بالكامل وبدون إعلانات.","Your data stays safe on your device. Totally free & ad-free.")}</div>
+      <div class="dim">${t("تُحفظ إعداداتك وإحصاءاتك محلياً على جهازك. بعض الخدمات مثل جلب المصحف تحتاج إلى اتصال بالإنترنت.","Your settings and statistics are stored locally. Online Quran features require an internet connection.")}</div>
     `) + `<button class="btn" data-x="start">${t("ابدأ الاستخدام","Get Started")}</button></main></div>`;
 }
 
@@ -830,15 +893,18 @@ function render() {
   S.theme ? r.dataset.theme = S.theme : r.removeAttribute("data-theme");
   b.className = "b" + S.bg;
 
-  const v = { home, istighfar: istighfarView, stats, invest, settings }[S.tab] || home;
+  const v = { home, istighfar: istighfarView, quran: quranView, adhkar: adhkarView, stats, invest, settings }[S.tab] || home;
   $("#app").innerHTML = (S.done ? "" : onboard()) + (window._about ? about() : "") + `<main>${v()}</main>`;
   $("#nav").innerHTML = [
     ["home", ICONS.home, t("الرئيسية", "Home")],
+    ["quran", ICONS.quran, t("القرآن", "Quran")],
+    ["adhkar", ICONS.adhkar, t("الأذكار", "Adhkar")],
     ["istighfar", ICONS.istighfar, t("استغفار", "Istighfar")],
     ["stats", ICONS.stats, t("الإحصاءات", "Stats")],
     ["invest", ICONS.invest, t("استثمر", "Invest")],
     ["settings", ICONS.settings, t("الإعدادات", "Settings")]
   ].map(([k, iconSvg, l]) => `<button class="${S.tab === k ? "on" : ""}" data-tab="${k}">${iconSvg}<span>${l}</span></button>`).join("");
+  if (S.tab === 'quran' && _quranLoaded !== +(S.qSurah||1)) setTimeout(()=>loadSurah(S.qSurah||1), 0);
 }
 
 /* ---------- EVENT LISTENERS ---------- */
@@ -851,10 +917,18 @@ document.addEventListener("click", e => {
     save(); render(); return;
   }
 
-  const b = e.target.closest("[data-tab],[data-set],[data-tog],[data-act],[data-sess],[data-x]");
+  const b = e.target.closest("[data-tab],[data-set],[data-tog],[data-act],[data-sess],[data-x],[data-playayah],[data-adhkar]");
   if (!b) return;
   const D = b.dataset;
 
+  if (D.playayah) {
+    const player = document.getElementById('quranAudio');
+    if (player && D.playayah) { player.src = D.playayah; player.style.display = 'block'; player.play().catch(()=>toast(t('تعذر تشغيل الصوت','Audio could not start'),t('اضغط زر التشغيل في مشغل الصوت.','Tap play in the audio player.'))); }
+    return;
+  }
+  if (D.adhkar) {
+    U.adhkarCounts = U.adhkarCounts || {}; U.adhkarCounts[D.adhkar] = (U.adhkarCounts[D.adhkar] || 0) + 1; save(); render(); return;
+  }
   if (D.tab) { S.tab = D.tab; scrollTo(0, 0); }
   else if (D.set) { S[D.set] = isNaN(D.val) || D.val === "" ? D.val : +D.val; }
   else if (D.tog) { S[D.tog] = S[D.tog] ? 0 : 1; }
@@ -894,6 +968,7 @@ document.addEventListener("click", e => {
       requestNotificationPermission();
     }
   }
+  else if (D.x === "loadQuran") { S.qSurah = +(document.getElementById('qSurahSelect')?.value || 1); _quranLoaded = 0; }
   else if (D.x === "installPWA") {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -915,6 +990,7 @@ document.addEventListener("click", e => {
 });
 
 document.addEventListener("change", e => {
+  if (e.target.id === 'qSurahSelect') { S.qSurah = +e.target.value; _quranLoaded = 0; save(); loadSurah(S.qSurah); return; }
   const i = e.target.dataset;
   if (!i.in) return;
   S[i.in] = i.num !== undefined ? +e.target.value : e.target.value;
