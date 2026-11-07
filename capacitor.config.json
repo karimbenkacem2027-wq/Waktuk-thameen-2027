@@ -1,0 +1,12 @@
+{
+  "appId": "com.waqtak.thamin",
+  "appName": "وقتك ثمين V3",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_waqt",
+      "iconColor": "#0B6B52"
+    }
+  }
+}
