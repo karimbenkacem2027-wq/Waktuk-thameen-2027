@@ -1,7 +1,26 @@
 from PIL import Image, ImageDraw, ImageFilter
 import os, shutil
 
-SRC = next(f for f in os.listdir(".") if f.lower().endswith(".png"))
+# Find the app icon deterministically. GitHub uploads may omit root-level assets,
+# so fall back to the web app's bundled 512px icon.
+CANDIDATES = [
+    "icon.png",
+    "www/icons/icon-512.png",
+    "www/icons/icon-192.png",
+]
+SRC = next((p for p in CANDIDATES if os.path.isfile(p)), None)
+if SRC is None:
+    # Last-resort recursive search, excluding generated Android resources.
+    for base, dirs, files in os.walk("."):
+        dirs[:] = [d for d in dirs if d not in {".git", "node_modules", "android"}]
+        pngs = sorted(f for f in files if f.lower().endswith(".png"))
+        if pngs:
+            SRC = os.path.join(base, pngs[0])
+            break
+if SRC is None:
+    raise FileNotFoundError(
+        "No PNG app icon found. Add icon.png or www/icons/icon-512.png."
+    )
 RES = "android/app/src/main/res"
 SIZES = {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144, "xxxhdpi": 192}
 
