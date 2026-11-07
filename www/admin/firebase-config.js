@@ -1,11 +1,10 @@
-// ضع بيانات تطبيق Firebase Web هنا بعد إنشاء مشروعك في Firebase Console.
-// لا تضع مفاتيح Service Account أو مفاتيح الخادم داخل تطبيق Android.
+
 export const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_FIREBASE_APP_ID",
-  measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyBsgYsggNHQFb4ybhBr1SNVOA4kpeojb48",
+  authDomain: "waqtak-thamin.firebaseapp.com",
+  projectId: "waqtak-thamin",
+  storageBucket: "waqtak-thamin.firebasestorage.app",
+  messagingSenderId: "1040884582605",
+  appId: "1:1040884582605:web:8e5ae23f68ba8f9a4ec184",
+  measurementId: "G-5V855M8RD0"
 };
