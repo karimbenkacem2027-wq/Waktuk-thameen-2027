@@ -10,6 +10,7 @@
     "upgrade:v3": "python tools/upgrade_v3.py"
   },
   "dependencies": {
+    "@capacitor-firebase/messaging": "^6.0.0",
     "@capacitor/android": "^6.2.0",
     "@capacitor/core": "^6.2.0",
     "@capacitor/local-notifications": "^6.1.0"
