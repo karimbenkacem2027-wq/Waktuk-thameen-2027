@@ -26,6 +26,18 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Firebase config (google-services.json)
+        run: |
+          if [ ! -f google-services.json ]; then
+            echo "::error::google-services.json غير موجود في جذر المستودع. نزّله من Firebase وارفعه."
+            exit 1
+          fi
+          if ! grep -q "com.waqtak.thamin" google-services.json; then
+            echo "::error::اسم الحزمة داخل google-services.json ليس com.waqtak.thamin"
+            exit 1
+          fi
+          cp google-services.json android/app/google-services.json
+
       - name: Generate icons
         run: |
           pip install pillow
@@ -36,6 +48,12 @@ jobs:
 
       - name: Native usage monitor
         run: python setup_native.py
+
+      - name: Add push notifications (FCM)
+        run: python patch_push.py
+
+      - name: Add donation card
+        run: python patch_donate.py
 
       - name: Sync web files
         run: npx cap sync android
