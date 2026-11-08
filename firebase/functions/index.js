@@ -1,7 +1,9 @@
 const { onCall, HttpsError } = require('firebase-functions/v2/https');
+const { onDocumentCreated } = require('firebase-functions/v2/firestore');
 const { defineSecret } = require('firebase-functions/params');
 const { initializeApp } = require('firebase-admin/app');
 const { getFirestore, FieldValue, Timestamp } = require('firebase-admin/firestore');
+const { getMessaging } = require('firebase-admin/messaging');
 
 initializeApp();
 const db = getFirestore();
@@ -57,3 +59,41 @@ exports.waqtakAIAdvisor = onCall({ secrets: [OPENAI_API_KEY], timeoutSeconds: 45
   if (!answer) throw new HttpsError('internal', 'The AI service returned an empty answer.');
   return { answer };
 });
+
+// ---------------------------------------------------------------------------
+// إشعار جماعي عند نشر منشور طُلب له إشعار من لوحة الإدارة
+// يُشغَّل تلقائياً عند إنشاء مستند جديد في المجموعة posts
+// ---------------------------------------------------------------------------
+exports.notifyOnPost = onDocumentCreated(
+  { document: 'posts/{postId}', region: 'europe-west1' },
+  async (event) => {
+    const snap = event.data;
+    const data = snap && snap.data();
+    if (!data) return;
+
+    // 1) لا نرسل إلا إن كان المنشور منشوراً وطُلب له إشعار ولم يُرسل من قبل
+    if (data.published !== true || data.notifyRequested !== true || data.notifiedAt) return;
+
+    // 2) حماية إضافية: نتأكد أن الناشر مدير نشط فعلاً
+    const creator = String(data.createdBy || '');
+    if (!creator) return;
+    const userDoc = await db.doc('users/' + creator).get();
+    if (!userDoc.exists || userDoc.data().role !== 'admin' || userDoc.data().active === false) {
+      console.warn('notifyOnPost: creator is not an active admin, skipping');
+      return;
+    }
+
+    // 3) نرسل إلى كل من اشترك في الموضوع all
+    const title = String(data.title || '').slice(0, 100) || 'وقتك ثمين';
+    const body = String(data.body || '').slice(0, 200);
+    await getMessaging().send({
+      topic: 'all',
+      notification: { title, body },
+      data: { postId: event.params.postId, type: String(data.type || '') },
+      android: { priority: 'high' }
+    });
+
+    // 4) نسجّل أن الإشعار أُرسل حتى لا يتكرر
+    await snap.ref.update({ notifiedAt: FieldValue.serverTimestamp() });
+  }
+);
