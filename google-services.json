@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1040884582605",
+    "firebase_url": "https://waqtak-thamin-default-rtdb.firebaseio.com",
+    "project_id": "waqtak-thamin",
+    "storage_bucket": "waqtak-thamin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040884582605:android:5d3693e6d713e95d4ec184",
+        "android_client_info": {
+          "package_name": "com.waqtak.thamin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoJNpUpZlFc3kjUQxu-GRe2UWBfJWpXMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
